@@ -79,9 +79,7 @@ const createRow = ({ id, title, price, category, count, units }) => {
     'afterbegin',
     `
     <td class="table__cell"></td>
-    <td class="table__cell table__cell_left table__cell_name" data-id="${
-      goods.id
-    }">
+    <td class="table__cell table__cell_left table__cell_name" data-id="${id}">
       <span class="table__cell-id">id: ${id}</span>
       ${title}
     </td>

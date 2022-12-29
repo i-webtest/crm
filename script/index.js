@@ -6,8 +6,26 @@ const modalCheckbox = modal.querySelector('.modal__checkbox');
 const modalInputDiscount = modal.querySelector('.modal__input_discount');
 const overlay = document.querySelector('.overlay');
 const tableBody = document.querySelector('.table__body');
+const btnAddGoods = document.querySelector('.panel__add-goods');
+const modalClose = modal.querySelector('.modal__close');
 
 overlay.classList.remove('active');
+
+btnAddGoods.addEventListener('click', () => {
+  overlay.classList.add('active');
+});
+
+overlay.addEventListener('click', () => {
+  overlay.classList.remove('active');
+});
+
+modal.addEventListener('click', (event) => {
+  event.stopPropagation();
+});
+
+modalClose.addEventListener('click', () => {
+  overlay.classList.remove('active');
+});
 
 const goods = [
   {

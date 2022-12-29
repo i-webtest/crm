@@ -9,46 +9,6 @@ const tableBody = document.querySelector('.table__body');
 
 overlay.classList.remove('active');
 
-const createRow = (goods) => {
-  const tr = document.createElement('tr');
-
-  tr.insertAdjacentHTML(
-    'afterbegin',
-    `
-    <td class="table__cell"></td>
-    <td class="table__cell table__cell_left table__cell_name" data-id="${
-      goods.id
-    }">
-      <span class="table__cell-id">id: ${goods.id}</span>
-      ${goods.title}
-    </td>
-    <td class="table__cell table__cell_left">${goods.category}</td>
-    <td class="table__cell">${goods.units}</td>
-    <td class="table__cell">${goods.count}</td>
-    <td class="table__cell">$${goods.price}</td>
-    <td class="table__cell">$${goods.count * goods.price}</td>
-    <td class="table__cell table__cell_btn-wrapper">
-      <button class="table__btn table__btn_pic"></button>
-      <button class="table__btn table__btn_edit"></button>
-      <button class="table__btn table__btn_del"></button>
-    </td>
-  `
-  );
-
-  return tr;
-};
-
-const renderGoods = (arr) => {
-  let ordinalNumber = tableBody.querySelectorAll('tr').length + 1;
-
-  for (const elem of arr) {
-    const itemGoods = createRow(elem);
-    itemGoods.querySelector('td').textContent = ordinalNumber;
-    ordinalNumber += 1;
-    tableBody.append(itemGoods);
-  }
-};
-
 const goods = [
   {
     id: 1,
@@ -111,5 +71,45 @@ const goods = [
     },
   },
 ];
+
+const createRow = ({ id, title, price, category, count, units }) => {
+  const tr = document.createElement('tr');
+
+  tr.insertAdjacentHTML(
+    'afterbegin',
+    `
+    <td class="table__cell"></td>
+    <td class="table__cell table__cell_left table__cell_name" data-id="${
+      goods.id
+    }">
+      <span class="table__cell-id">id: ${id}</span>
+      ${title}
+    </td>
+    <td class="table__cell table__cell_left">${category}</td>
+    <td class="table__cell">${units}</td>
+    <td class="table__cell">${count}</td>
+    <td class="table__cell">$${price}</td>
+    <td class="table__cell">$${count * price}</td>
+    <td class="table__cell table__cell_btn-wrapper">
+      <button class="table__btn table__btn_pic"></button>
+      <button class="table__btn table__btn_edit"></button>
+      <button class="table__btn table__btn_del"></button>
+    </td>
+  `
+  );
+
+  return tr;
+};
+
+const renderGoods = (arr) => {
+  let ordinalNumber = tableBody.querySelectorAll('tr').length + 1;
+
+  for (const elem of arr) {
+    const itemGoods = createRow(elem);
+    itemGoods.querySelector('td').textContent = ordinalNumber;
+    ordinalNumber += 1;
+    tableBody.append(itemGoods);
+  }
+};
 
 renderGoods(goods);

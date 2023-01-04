@@ -1,32 +1,5 @@
 'use strict';
 
-const modal = document.querySelector('.modal');
-const modalTitle = modal.querySelector('.modal__title');
-const modalCheckbox = modal.querySelector('.modal__checkbox');
-const modalInputDiscount = modal.querySelector('.modal__input_discount');
-const overlay = document.querySelector('.overlay');
-const tableBody = document.querySelector('.table__body');
-const btnAddGoods = document.querySelector('.panel__add-goods');
-const modalClose = modal.querySelector('.modal__close');
-
-overlay.classList.remove('active');
-
-btnAddGoods.addEventListener('click', () => {
-  overlay.classList.add('active');
-});
-
-overlay.addEventListener('click', () => {
-  overlay.classList.remove('active');
-});
-
-modal.addEventListener('click', (event) => {
-  event.stopPropagation();
-});
-
-modalClose.addEventListener('click', () => {
-  overlay.classList.remove('active');
-});
-
 const goods = [
   {
     id: 1,
@@ -90,6 +63,30 @@ const goods = [
   },
 ];
 
+const modal = document.querySelector('.modal');
+const modalTitle = modal.querySelector('.modal__title');
+const modalCheckbox = modal.querySelector('.modal__checkbox');
+const modalInputDiscount = modal.querySelector('.modal__input_discount');
+const overlay = document.querySelector('.overlay');
+const tableBody = document.querySelector('.table__body');
+const btnAddGoods = document.querySelector('.panel__add-goods');
+const btnDelGoods = document.querySelectorAll('.table__btn_del');
+const modalClose = modal.querySelector('.modal__close');
+
+overlay.classList.remove('active');
+
+btnAddGoods.addEventListener('click', () => {
+  overlay.classList.add('active');
+});
+
+overlay.addEventListener('click', (e) => {
+  const target = e.target;
+
+  if (target === overlay || target.closest('.modal__close')) {
+    overlay.classList.remove('active');
+  }
+});
+
 const createRow = ({ id, title, price, category, count, units }) => {
   const tr = document.createElement('tr');
 
@@ -117,11 +114,34 @@ const createRow = ({ id, title, price, category, count, units }) => {
   return tr;
 };
 
+const deleteGoods = () => {
+  tableBody.addEventListener('click', (e) => {
+    const target = e.target;
+
+    if (target.closest('.table__btn_del')) {
+      const row = target.closest('tr');
+
+      const currentId = +row.querySelector('td').textContent;
+
+      goods.splice(
+        goods.findIndex((title) => title.id === currentId),
+        1
+      );
+
+      row.remove();
+    }
+    console.log(goods);
+  });
+};
+
+deleteGoods();
+
 const renderGoods = (arr) => {
   let ordinalNumber = tableBody.querySelectorAll('tr').length + 1;
 
   for (const elem of arr) {
     const itemGoods = createRow(elem);
+
     itemGoods.querySelector('td').textContent = ordinalNumber;
     ordinalNumber += 1;
     tableBody.append(itemGoods);

@@ -7,7 +7,6 @@ const addGoodsPage = (title, tableBody) => {
 
 const addGoodsData = (title, goods) => {
   goods.push(title);
-  console.log('goods: ', goods);
 
   const cmsTotalPrice = document.querySelector('.cms__total-price');
   cmsTotalPrice.textContent = '$ ' + totalPrice(goods);

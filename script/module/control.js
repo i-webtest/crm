@@ -43,7 +43,6 @@ const formControl = (
 
     const formData = new FormData(e.target);
     const newGoods = Object.fromEntries(formData);
-    console.log('newGoods: ', newGoods);
     newGoods.id = codeId.textContent;
     newGoods.title = form.name.value;
     newGoods.price = +newGoods.price;
@@ -75,7 +74,6 @@ const deleteGoods = (tableBody, goods, cmsTotalPrice) => {
 
       calculateTotalPrice(tableBody, cmsTotalPrice);
     }
-    console.log('goods: ', goods);
   });
 };
 

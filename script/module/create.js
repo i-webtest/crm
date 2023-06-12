@@ -17,7 +17,7 @@ export const createRow = ({ id, title, price, category, count, units }) => {
     <td class="table__cell">$${price}</td>
     <td class="table__cell">$${count * price}</td>
     <td class="table__cell table__cell_btn-wrapper">
-      <button class="table__btn table__btn_pic"></button>
+      <button class="table__btn table__btn_pic" data-pic="img/cheetan.jpg"></button>
       <button class="table__btn table__btn_edit"></button>
       <button class="table__btn table__btn_del"></button>
     </td>

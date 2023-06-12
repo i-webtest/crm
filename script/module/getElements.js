@@ -6,6 +6,7 @@ export const getElements = () => {
   const overlay = document.querySelector('.overlay');
   const tableBody = document.querySelector('.table__body');
   const btnAddGoods = document.querySelector('.panel__add-goods');
+  const tableBtnPic = document.querySelectorAll('.table__btn_pic');
   const btnDelGoods = document.querySelectorAll('.table__btn_del');
   const modalClose = document.querySelector('.modal__close');
   const form = document.querySelector('.modal__form');
@@ -23,6 +24,7 @@ export const getElements = () => {
     overlay,
     tableBody,
     btnAddGoods,
+    tableBtnPic,
     btnDelGoods,
     modalClose,
     form,

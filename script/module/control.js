@@ -77,4 +77,26 @@ const deleteGoods = (tableBody, goods, cmsTotalPrice) => {
   });
 };
 
-export default { modalControl, formControl, deleteGoods };
+const showWindow = (url) => {
+  const width = 800;
+  const height = 510;
+  const positionTop = screen.height / 2 - height / 2;
+  const positionLeft = screen.width / 2 - width / 2;
+  const positionWindow = open(
+    'about:blank',
+    '_blank',
+    `popup=true, width=${width}, height=${height}, top=${positionTop}, left=${positionLeft}`
+  );
+  positionWindow.document.write(`<img src="${url}"/>`);
+};
+
+const imgShow = (tableBody) => {
+  tableBody.addEventListener('click', (e) => {
+    const target = e.target;
+    if (target.closest('.table__btn_pic')) {
+      showWindow(target.getAttribute('data-pic'));
+    }
+  });
+};
+
+export default { modalControl, formControl, deleteGoods, imgShow };

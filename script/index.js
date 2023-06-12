@@ -4,7 +4,7 @@ import { getElements } from './module/getElements.js';
 import { renderGoods } from './module/render.js';
 import { totalCost, totalPrice } from './module/total.js';
 
-const { modalControl, formControl, deleteGoods } = control;
+const { modalControl, formControl, deleteGoods, imgShow } = control;
 
 const goods = [
   {
@@ -98,6 +98,7 @@ const goods = [
     );
 
     formControl(form, tableBody, closeModal, codeId, cmsTotalPrice, goods);
+    imgShow(tableBody);
   };
 
   init();
